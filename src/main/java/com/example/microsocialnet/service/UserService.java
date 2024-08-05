@@ -17,16 +17,22 @@ public class UserService {
     }
 
     public String createUser(User user) {
+        if (userRepository.findByLastNameAndFirstName(user.getLastName(), user.getFirstName()).isPresent()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
         User savedUser = userRepository.save(user);
         return String.format("Пользователь %s добавлен в базу с id = %s", savedUser.getLastName(), savedUser.getId());
     }
 
     public User getUser(long id) {
-        return userRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     public String updateUser(User user, long id) {
-        if(!userRepository.existsById(id)) {
+        if (!user.getId().equals(id)) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "id в url не совпадает с id в теле запроса");
+        }
+        if (!userRepository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         User savedUser = userRepository.save(user);
@@ -34,7 +40,7 @@ public class UserService {
     }
 
     public String deleteUser(long id) {
-        if(!userRepository.existsById(id)) {
+        if (!userRepository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         userRepository.deleteById(id);
