@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: "micro-social-net"
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+  profiles:
+    active: local
