@@ -3,12 +3,12 @@ spring:
     name: "micro-social-net"
   datasource:
       driver-class-name: org.postgresql.Driver
-      password: test-pass
-      url: jdbc:postgresql://localhost:5001/test-db
       username: test-user
+      password: test-pass
+      url: jdbc:postgresql://localhost:5002/test-db
+      hikari:
+        schema: users_scheme
   jpa:
-    hibernate:
-      ddl-auto: create-drop
     database: POSTGRESQL
     show-sql: true
   profiles:

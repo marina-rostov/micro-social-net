@@ -18,7 +18,7 @@ import java.util.Date;
 @Where(clause = "deleted=false")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @CreatedDate
