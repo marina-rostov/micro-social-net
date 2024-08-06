@@ -1,8 +1,11 @@
 package com.example.microsocialnet.entity;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,6 +13,9 @@ import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
+@Table(name = "users")
+@SQLDelete(sql = "UPDATE users SET deleted = true WHERE id=?")
+@Where(clause = "deleted=false")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
