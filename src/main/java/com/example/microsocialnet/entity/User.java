@@ -20,11 +20,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @CreatedDate
     private LocalDate created;
 
     private String email;
+
     private String firstName;
+
     private String lastName;
 
     private Date birthdate;
@@ -35,10 +38,16 @@ public class User {
 
     private String info;
 
+    private boolean deleted = Boolean.FALSE;
+
+    private Long cityId;
+
+    private Long universityId;
+
     public User() {
     }
 
-    public User(Long id, LocalDate created, String email, String firstName, String lastName, Date birthdate, String gender, String avatar, String info) {
+    public User(Long id, LocalDate created, String email, String firstName, String lastName, Date birthdate, String gender, String avatar, String info, boolean deleted, Long cityId, Long universityId) {
         this.id = id;
         this.created = created;
         this.email = email;
@@ -48,6 +57,9 @@ public class User {
         this.gender = gender;
         this.avatar = avatar;
         this.info = info;
+        this.deleted = deleted;
+        this.cityId = cityId;
+        this.universityId = universityId;
     }
 
     public Long getId() {
@@ -86,6 +98,18 @@ public class User {
         return info;
     }
 
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public Long getCityId() {
+        return cityId;
+    }
+
+    public Long getUniversityId() {
+        return universityId;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -98,6 +122,9 @@ public class User {
                 ", gender='" + gender + '\'' +
                 ", avatar='" + avatar + '\'' +
                 ", info='" + info + '\'' +
+                ", deleted=" + deleted +
+                ", cityId=" + cityId +
+                ", universityId=" + universityId +
                 '}';
     }
 }
