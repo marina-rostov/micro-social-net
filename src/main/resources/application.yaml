@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: "micro-social-net"
+  server:
+    port: ${SERVER_PORT}
+  management:
+    port: ${ACTUATOR_ENDPOINTS_PORT}
+  datasource:
+      driver-class-name: org.postgresql.Driver
+      username: ${POSTGRES_USERNAME}
+      password: ${POSTGRES_PASSWORD}
+      url: ${POSTGRES_DATASOURCE_URL}
+      hikari:
+        schema: ${POSTGRES_DATABASE_SCHEME}
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+  profiles:
+    active: ${SPRING_PROFILE}
