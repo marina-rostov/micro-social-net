@@ -2,6 +2,7 @@ package com.example.microsocialnet.controller;
 
 import com.example.microsocialnet.entity.User;
 import com.example.microsocialnet.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,26 +23,31 @@ public class UserController {
         this.userService = userService;
     }
 
+    @Operation(summary="Создание пользователя")
     @PostMapping
     String createUser(@RequestBody User user) {
         return userService.createUser(user);
     }
 
+    @Operation(summary="Получение пользователя по id")
     @GetMapping("/{id}")
     User getUser(@PathVariable long id) {
         return userService.getUser(id);
     }
 
+    @Operation(summary="Обновление пользователя по id")
     @PutMapping("/{id}")
     String updateUser(@RequestBody User user, @PathVariable long id) {
         return userService.updateUser(user, id);
     }
 
+    @Operation(summary="Удаление пользователя по id")
     @DeleteMapping("/{id}")
     String deleteUser(@PathVariable long id) {
         return userService.deleteUser(id);
     }
 
+    @Operation(summary="Получение списка всех пользователей")
     @GetMapping
     List<User> getUsers() {
         return userService.getUsers();
