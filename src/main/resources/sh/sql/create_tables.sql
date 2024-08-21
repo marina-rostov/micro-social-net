@@ -24,15 +24,15 @@ CREATE TABLE IF NOT EXISTS users_scheme.users
     gender        VARCHAR(1),
     avatar        TEXT,
     info          TEXT,
-    city_id       UUID,
-    university_id UUID
+    city_id       bigint,
+    university_id bigint
 );
 
 CREATE TABLE IF NOT EXISTS users_scheme.friend
 (
     id   BIGSERIAL PRIMARY KEY,
-    user_id_from UUID NOT NULL,
-    user_id_to   UUID NOT NULL
+    user_id_from bigint,
+    user_id_to   bigint
 );
 
 create sequence users_scheme.city_id_seq;

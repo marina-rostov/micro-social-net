@@ -2,7 +2,6 @@ package com.example.microsocialnet.entity;
 
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -21,8 +20,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @CreatedDate
-    private LocalDate created;
+    private Date created;
 
     private String email;
 
@@ -30,7 +28,7 @@ public class User {
 
     private String lastName;
 
-    private Date birthdate;
+    private LocalDate birthdate;
 
     private String gender;
 
@@ -47,8 +45,22 @@ public class User {
     public User() {
     }
 
-    public User(Long id, LocalDate created, String email, String firstName, String lastName, Date birthdate, String gender, String avatar, String info, boolean deleted, Long cityId, Long universityId) {
+    public User(Long id, Date created, String email, String firstName, String lastName, LocalDate birthdate, String gender, String avatar, String info, boolean deleted, Long cityId, Long universityId) {
         this.id = id;
+        this.created = created;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthdate = birthdate;
+        this.gender = gender;
+        this.avatar = avatar;
+        this.info = info;
+        this.deleted = deleted;
+        this.cityId = cityId;
+        this.universityId = universityId;
+    }
+
+    public User(Date created, String email, String firstName, String lastName, LocalDate birthdate, String gender, String avatar, String info, boolean deleted, Long cityId, Long universityId) {
         this.created = created;
         this.email = email;
         this.firstName = firstName;
@@ -66,7 +78,7 @@ public class User {
         return id;
     }
 
-    public LocalDate getCreated() {
+    public Date getCreated() {
         return created;
     }
 
@@ -82,7 +94,7 @@ public class User {
         return lastName;
     }
 
-    public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
