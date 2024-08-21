@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  psql:
+    image: postgres:14
+    ports:
+      - "5002:5432"
+    volumes:
+      - ./src/main/resources/sh/sql:/docker-entrypoint-initdb.d
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: test-db
+      POSTGRES_USER: test-user
+      POSTGRES_PASSWORD: test-pass
+    restart: unless-stopped
+
+  pgadmin:
+    image: dpage/pgadmin4:6.9
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root@admin.org
+      PGADMIN_DEFAULT_PASSWORD: pgpass
+    restart: unless-stopped
+    depends_on:
+      - psql
+volumes:
+  postgres-data:
