@@ -15,5 +15,7 @@ spring:
   jpa:
     database: POSTGRESQL
     show-sql: true
+  liquibase:
+    change-log: classpath:liquibase/changelog.yaml
   profiles:
     active: ${SPRING_PROFILE}

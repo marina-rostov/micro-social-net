@@ -1,0 +1,117 @@
+databaseChangeLog:
+  - changeSet:
+      id: DEV-1
+      author: MarinKa
+      changes:
+        - createTable:
+            tableName: users
+            remarks: Пользователи
+            columns:
+              - column:
+                  name: id
+                  type: integer
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: users_pk
+                    nullable: false
+              - column:
+                  name: created
+                  type: timestamp with time zone
+                  defaultValue: now()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: deleted
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: birthdate
+                  type: date
+              - column:
+                  name: gender
+                  type: varchar(1)
+              - column:
+                  name: avatar
+                  type: text
+              - column:
+                  name: info
+                  type: text
+              - column:
+                  name: city_id
+                  type: integer
+              - column:
+                  name: city_id
+                  type: integer
+        - createTable:
+            tableName: city
+            remarks: Города
+            columns:
+              - column:
+                  name: id
+                  type: integer
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: city_pk
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: university
+            remarks: Университеты
+            columns:
+              - column:
+                  name: id
+                  type: integer
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: university_pk
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: friend
+            remarks: Друзья
+            columns:
+              - column:
+                  name: id
+                  type: integer
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: friend_pk
+                    nullable: false
+              - column:
+                  name: user_id_from
+                  type: integer
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id_to
+                  type: integer
+                  constraints:
+                    nullable: false
