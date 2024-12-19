@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: "micro-social-net"
+  datasource:
+      driver-class-name: org.postgresql.Driver
+      password: test-pass
+      url: jdbc:postgresql://localhost:5001/test-db
+      username: test-user
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database: POSTGRESQL
+    show-sql: true
+  profiles:
+    active: local
